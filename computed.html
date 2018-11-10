@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+   <title>软谋教育</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+    window.onload = function(){
+        var vm = new Vue({
+            el:'#my',
+            data:{
+                info:{id:1,price:20,name:'套餐A',count:1},
+                sale:0.8,
+                freight:5,
+                total:'',
+                num1:100,
+            },
+            methods:{
+                totalFreight2:function(){
+                    this.total =(this.info.count*this.info.price)*this.sale+this.freight
+                },
+                getNum2:function(){
+                    this.num2 = 200;
+                }
+            },
+            //计算属性   用来存储和处理数据
+            computed:{
+                totalFreight:function(){
+                    return (this.info.count*this.info.price)*this.sale+this.freight;
+                },
+                //读取会触发get
+                //修改会触发set
+                num2:{
+                    get:function(){
+                        console.log('get')
+                        return this.totalFreight
+                    },
+                    set:function(val){
+                        console.log('set')
+                        //this.num2 = val;//错误   不能直接修改计算属性
+                        this.num1 = val;
+                    }
+                }
+            }
+        });
+    }
+    </script>
+
+<body>
+<div id="my">
+    <div>
+        您购买了{{info.name}}共{{info.count}}份
+        <p>总价：{{totalFreight}}</p>
+    </div>
+
+    <div>
+        您购买了{{info.name}}
+        <input type="text" v-model="info.count">数量
+        <p>总价：{{totalFreight}}</p>
+        <button @click="totalFreight2">结算</button>
+        <p>(方法)总价：{{total}}</p>
+    </div>
+
+    <h1>num1:{{num1}}</h1>
+    <h1>num2:{{num2}}</h1>
+    <button @click="getNum2()">change</button>
+   
+</div>
+
+</body>
+</html>

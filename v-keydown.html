@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+   <title>软谋教育</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+    window.onload = function(){
+        new Vue({
+            el:'#my',
+            data:{
+                value:'12345',
+                che:false,
+                arr:['2'],
+                radioT:'1'
+            },
+            methods:{
+                key:function(){
+                    console.log('111');
+                },
+                altC:function(){
+                    console.log('alt+c');
+                }
+            }
+        })
+    }
+    </script>
+ 
+<body>
+<div id="my">
+    <button @keydown.13="key()">button</button>
+    <button @keydown.enter="key()">enter</button>
+    <button @keydown.a="key()">a</button>
+    <button @keydown.esc="key()">esc</button>
+    <button @keydown.up="key()">up</button>
+    <button @keydown.left="key()">left</button>
+    <!--组合键  alt+c-->
+    <button @keydown.alt.67="altC()">alt+c</button>
+    <!--<button @keydown.alt.c="altC()">alt+c</button>-->
+</div>
+
+</body>
+</html>

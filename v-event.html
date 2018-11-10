@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+   <title>软谋教育</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+    window.onload = function(){
+        new Vue({
+            el:'#my',
+            data:{
+                value:'12345',
+                che:false,
+                arr:['2'],
+                radioT:'1'
+            },
+            methods:{
+                showA:function(){
+                    console.log('AAA');
+                },
+                showB:function(){
+                    console.log('BBBB');
+                },
+                showC:function(e){
+                    console.log('CCCC');
+                   // e.stopPropagation();
+                },
+                open:function(e){
+                    console.log('open');
+                    //e.preventDefault();
+                },
+                once:function(e){
+                    console.log('once');
+                },
+            }
+        })
+    }
+    </script>
+ 
+<body>
+<div id="my">
+    <!--阻止事件冒泡-->
+    <div @click="showA()">A
+        <div  @click="showB()">B
+            <div  @click="showC($event)">C</div>
+            <div  @click.stop="showC($event)">C</div>
+        </div>
+    </div>
+    <!--取消事件的默认行为-->
+    <a href="http://www.baidu.com" @click="open($event)">click</a>
+    <a href="http://www.baidu.com" @click.prevent ="open($event)">click</a>
+    <!--只执行一次-->
+    <button @click.once="once()">once</button>
+</div>
+
+</body>
+</html>

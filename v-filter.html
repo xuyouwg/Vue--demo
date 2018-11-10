@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+   <title>软谋教育</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+    window.onload = function(){
+        Vue.filter('addZero',function(type){
+            return type<10 ?'0'+type:type;
+        });
+        new Vue({
+            el:'#my',
+            data:{
+                value:'12345',
+                //curTime:Date.now(),
+                curTime:'1525918210'
+                
+            },
+            methods:{
+                showA:function(){
+                    console.log('AAA');
+                }
+            },
+            filters:{  //过滤器
+                stateFilter:function(type){
+                    switch(type){
+                        case true:
+                            return '已采购';
+                        case false:
+                            return '未采购';
+                        default:
+                            return '未采购';
+                    }
+                },
+                number:function(data,n){
+                    return data.toFixed(n);
+                },
+                date:function(data){
+                    //var d = new Date(data);
+                    var d = new Date(data *1000);
+                    return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+                }
+            }
+        })
+    }
+    </script>
+ 
+<body>
+<div id="my">
+    <div>{{1 | addZero}}</div>
+    <div>{{3.14159 | number(2)}}</div>
+    <div>{{curTime | date }}</div>
+</div>
+
+</body>
+</html>
