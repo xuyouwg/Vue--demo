@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shppingcart</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+    <script type="text/javascript" src='js/vue.js'></script>
+    <script type="text/javascript" src="js/index.js"></script>
+	<style>
+    .table-striped .delbtn {
+        cursor: pointer;
+        background: #428bca;
+        border: none;
+    }
+    .table-striped .delbtn[disabled] {
+        cursor: default;
+        background: #999;
+        border: none;
+    }
+    </style>
+</head>
+<body>
+    <div id="my">
+        <!-- 头部 -->
+        <div class="page-header">
+            <div>
+              <h1 style="display: inline-block;">{{name}}的购物清单列表</h1>
+                <span>清单总数
+                  <span class="label label-warning" >{{items.length}}</span>
+                </span>
+                <span>未采购数
+                  <span class="label label-success">{{count}}</span>
+                </span>
+            </div>  
+        </div>
+        <!-- 内容 -->
+        <div class="panel">
+            <div class="input-group">
+              <input class="form-control" type="text" v-model="val"/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" @click="add()">添加</button>
+              </span>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>清单名称</th>
+                  <th>已采购</th>
+                  <th>状态</th>
+                  <th>删除</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item,index) in items">
+                  <td>{{item.name}}</td>
+                  <td><input type="checkbox" v-model="item.state" @change="changeList()"/></td>
+                  <td>{{item.state | stateFilter}}</td>
+                  <td><button class="badge delbtn" @click="del(index)" :disabled="!item.state">删除</button></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>      
+    </div>
+</body>
+</html>
