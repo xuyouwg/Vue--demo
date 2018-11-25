@@ -2,13 +2,13 @@ window.onload = function(){
     new Vue({
         el:'#my',
         data:{
-            name:'lily',
+            name:'许由务光',
             val:'',
             count:0,
             items:[
-                {name:'商品1',state:false},
-                {name:'商品2',state:false},
-                {name:'商品3',state:true}],
+                {name:'苹果',state:false},
+                {name:'香蕉',state:false},
+                {name:'西瓜',state:true}],
             
         },
         mounted:function(){
